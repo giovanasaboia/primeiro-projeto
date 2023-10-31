@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /*o box-sizing força que a medida da 'caixa' seja feita pela borda da caixa com a 'border-box, então mesmo incluindo padding etc o html vai se virar pra fazer acontecer*/
+}
+
+:root {
+  /*podia ter usado o seletor do html, mas por costume uso pseudo selector root, que é a raiz do código, no html isso é quer dizer o html em si*/
+  --text-color: white;
+  /*esse --text-color é uma VARIABLE criada por mim, para substuir no código do css, tudo que usar essa mesma cor, ou seja, o que era white, eu troquei para a variavél, assim > var(--text-color) */
+  --bg-url: url(./assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.1);
+  --surface-color-hover: rgba(255, 255, 255, 0.02);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+.light {
+  --text-color: black;
+  --bg-url: url(./assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.2);
+  --switch-bg-url: url(./assets/sun.svg);
+}
+
+body {
+  /*
+  background-image: url(./assets/bg-mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  */
+  /* background: color image repeat position/size */
+
+  background: var(--bg-url) no-repeat top center/cover;
+}
+
+body * {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+
+#container {
+  width: 360px;
+  height: 712px;
+  /*no geral, no CSS, não é necessário a altura, porque acompanha os elementos, seja a rolgame da página ou os elementos da interface. Aqui seria 712px, to deixando só pra visualizar*/
+
+  /* border: 1px solid white; */
+  /*pode tirar o border depois que ja tiver mais completo, por enquanto to deixando o border: 1px solid white pra visualizar*/
+
+  margin: 56px auto 0px;
+  /*quando a propriedade não tem o sufixo de top-right-bottom-left significa que val pra tudo
+  PORÉM
+  se colocar mais de um valor, isso muda
+  com 2 valores: 1º top bottom 2º right left
+  com 3 valores: 1º top 2º laterais 3º bottom
+  com 4 valores: 1º top 2º right 3º bottom 4º left*/
+
+  padding: 0 24px;
+}
+
+/*PROFILE*/
+
+#profile {
+  text-align: center;
+  /* border: 1px solid #ffffff; */
+  padding: 24px;
+}
+
+#profile img {
+  width: 112px;
+  display: block;
+  margin: auto;
+
+  /*o display block força o elemento seguinte a linha seguinte*/
+  /*img é elemento INLINE e em INLINE não é possível aplicar Margin*/
+  /*mas se o pai for configurado a text-align: center, aí aceita centralizar tudo*
+  /*ou pode força os display block antes de aplicar a margin auto*/
+}
+
+#profile p {
+  font-weight: 500;
+  line-height: 24px;
+  font-size: 16px;
+  /*acho que ele não colocou o tamanho da fonte, mas já que tava no figma, taquei*/
+  margin-top: 8px;
+}
+
+/*SWITCH*/
+
+#switch {
+  position: relative;
+  /*esse relative em relação a caixa do SWITCH força o position absolute a ser relativo apenas ao switch e não ao layout todo*/
+  width: 64px;
+  margin: 4px auto;
+}
+
+#switch button {
+  width: 32px;
+  height: 32px;
+  background: white var(--switch-bg-url) no-repeat center;
+  border: 0;
+  border-radius: 50%;
+
+  position: absolute;
+  top: 50%;
+  /*com os 50% do topo tentaria manter a metade de CIMA do button dentro da caixa do switch, mas com o translateY no transforme, fica equilibrado e alinha*/
+  left: 0;
+  z-index: 1;
+  transform: translateY(-50%);
+  /*50% do elemento button sai pra cima da caixa, mas com o top 50% fica equilibrado*/
+}
+
+.light #switch button {
+  right: 0;
+  left: initial;
+}
+
+#switch span {
+  width: 64px;
+  height: 24px;
+  display: block;
+  border: 1px solid var(--stroke-color);
+  background: var(--surface-color);
+  backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+/*LINKS*/
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0;
+
+  /*aqui faz sentido ter o display, flex direction para ter o gap entre os itens da lista*/
+}
+
+ul li a {
+  /* 
+  - aqui o flex-direction: row não muda nada, porque o a (link) está contido dentro do li (list item)
+  - o gap tbm é inútil pq dentro da caixa-'li' o 'a' é elemento único
+  - o display flex + justify-content center colocam os link centralizados
+  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+ul li a:hover {
+  background-color: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+
+#social-links {
+  display: flex;
+  padding: 24px 0;
+  font-size: 24px;
+  justify-content: center;
+  align-items: flex-start;
+
+  /*aqui já tava inline, então colocar display flex é para habilitar o gap, para poder dar um espaço entre os icons*/
+}
+
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+#social-links a:hover {
+  background: var(--highlight-color);
+}
+
+footer {
+  pad: 24px 0;
+  text-align: center;
+  font-size: 14px;
+}
