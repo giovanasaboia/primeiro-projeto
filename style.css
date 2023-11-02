@@ -45,7 +45,8 @@ body * {
 }
 
 #container {
-  width: 360px;
+  width: 100%;
+  max-width: 580px;
   height: 712px;
   /*no geral, no CSS, não é necessário a altura, porque acompanha os elementos, seja a rolgame da página ou os elementos da interface. Aqui seria 712px, to deixando só pra visualizar*/
 
