@@ -116,12 +116,12 @@ body * {
   transform: translateY(-50%);
   /*50% do elemento button sai pra cima da caixa, mas com o top 50% fica equilibrado*/
 
-  animation: switch-slide-back .3s;
+  animation: switch-slide-back 0.3s;
   /*nessa animation acima não é necessário colocar o forwards pq o left é 0 igual ao que está na animation, seria redundante*/
 }
 
 .light #switch button {
-  animation: switch-slide .3s forwards;
+  animation: switch-slide 0.3s forwards;
   /*nessa animation acima, colocamos o forwards para manter a posição final, sem a animação voltar ao começo*/
 }
 
@@ -236,5 +236,4 @@ footer {
   to {
     left: 0;
   }
-  
 }
