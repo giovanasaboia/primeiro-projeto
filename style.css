@@ -115,11 +115,18 @@ body * {
   z-index: 1;
   transform: translateY(-50%);
   /*50% do elemento button sai pra cima da caixa, mas com o top 50% fica equilibrado*/
+
+  animation: switch-slide-back .3s;
+  /*nessa animation acima não é necessário colocar o forwards pq o left é 0 igual ao que está na animation, seria redundante*/
 }
 
 .light #switch button {
-  right: 0;
-  left: initial;
+  animation: switch-slide .3s forwards;
+  /*nessa animation acima, colocamos o forwards para manter a posição final, sem a animação voltar ao começo*/
+}
+
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
 }
 
 #switch span {
@@ -210,4 +217,24 @@ footer {
   .light {
     --bg-url: url(./assets/bg-desktop-light.jpg);
   }
+}
+
+/*animation*/
+@keyframes switch-slide {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes switch-slide-back {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+  
 }
