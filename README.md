@@ -1,4 +1,4 @@
-<h1 align="center"> DevLinks </h1>
+<h1 align="center"> Primeiro projeto: DevLinks </h1>
 
 <p align="center">
 Projeto do Discover, curso de introdução a Programação, promovido de forma exclusiva e gratuita pela Rocketseat, para ensino de tecnologias WEB. <br/>
